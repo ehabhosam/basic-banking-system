@@ -1,38 +1,492 @@
+:root {
+  /* colors variables */
+  --blue: rgb(60, 60, 167);
+  --light-yellow: rgb(255, 255, 187); 
+  --light-orange: rgb(255, 215, 165);
+  --light-red: #FF6B6B;
+  --light-blue: rgb(126, 182, 255); 
+  --dark-grey: #313233; 
+  --font: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
+  --white: #fff; 
+  overflow-x: hidden;
+}
 .App {
   text-align: center;
+  position: relative;
+  min-width: 100vw; 
+  margin-top: 8vh; 
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.navbar {
+  background-color: var(--white);
+  display: flex; 
+  justify-content: space-around;
+  width: 100%;
+  height: 8vh;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  z-index: 200;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.navbar > .logo > img {
+  height: 6vh; 
+  width: auto;
+  object-fit: cover;
+  margin-right: 10px;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+.navbar > .logo {
+  display: flex; 
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: 1.2rem;
+  font-weight: bold;
+  font-style: italic;
+  color: rgb(60, 60, 167); 
+}
+.navbar  > ul {
+  display: flex; 
+  align-items: center;
+  font-size: 1rem;
+  font-weight: bold;
+  font-style: italic;
+  color: var(--light-red);
+  height: 8vh;
+  margin: 0; 
+}
+.navbar  > ul > li {
+  cursor: pointer;
+}
+.list-element > a{
+  padding-right: 10px; 
+  padding-left: 10px; 
+}
+.list-element:hover > a {
+  background-color: rgba(0,0,0,0.5);
+  height: 8vh; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white !important; 
+  transition: .3s linear background-color; 
+}
+
+.background {
+  position: fixed;
+  z-index: -1;
+  top: 0; 
+  left: 0;
+  object-fit: contain;
+  height: 100%;
+  min-width: 100vw;
+  min-height: 100vh; 
+
+}
+.App > h1 { 
+  width: 100%; 
+  height: 80vh;
+  background: rgba(0, 0, 0, 0.5);
   color: white;
+  margin: 0;
+  display: flex; 
+  min-width: 100vw; 
+  justify-content: center;
+  align-items: center;
+  font-size: 250%;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
-
-.App-link {
-  color: #61dafb;
+.App > h1 > div {
+  animation: mymove 2s infinite;
+  padding: 15px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@keyframes mymove {
+  0%{
+    color: rgb(16,10,120);
+color: linear-gradient(180deg, rgba(16,10,120,1) 0%, rgba(255,255,255,1) 100%);
+  }  
+  70%{
+    color: rgb(255,255,255);
+color: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(16,10,120,1) 100%);
   }
-  to {
-    transform: rotate(360deg);
+  100%{
+    color: rgb(16,10,120);
+color: linear-gradient(180deg, rgba(16,10,120,1) 0%, rgba(255,255,255,1) 100%);
+  } 
+}
+
+.img-container {
+  width: 100%; 
+  height: 80vh;
+  position: relative;
+}
+.img-container > img{
+  height: 100%;
+}
+.hover-button {
+  filter: blur(3px);
+  transition: 0.5s filter; 
+}
+.img-container { 
+  width: 100%; 
+  height: 80vh;
+  background: transparent; 
+  color: white;
+  margin: 0;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  font-size: 250%;
+  font-family: var(--font);
+  overflow: hidden; 
+}
+.transfer-button {
+  width: auto;
+  height: auto; 
+  padding: 16px; 
+  font-size: 1.3rem;
+  border: none; 
+  font-family: var(--font);
+  border-radius: 10px;
+  background-color: var(--dark-grey);
+  color: var(--white);
+  cursor: pointer;
+  animation-fill-mode: forwards;
+  box-shadow: 10px 10px 44px 0px rgba(0,0,0,0.62);
+  -webkit-box-shadow: 10px 10px 44px 0px rgba(0,0,0,0.62);
+  -moz-box-shadow: 10px 10px 44px 0px rgba(0,0,0,0.62);
+}
+.img-container:hover > a > button {
+  animation: grow 0.5s linear;
+  animation-fill-mode: forwards;
+  filter: blur(0);
+  z-index: 100;
+}
+.img-container:hover > img{
+  filter: blur(3px);
+  transition: 0.5s filter;
+}
+@keyframes grow {
+  0%{
+    transform: scale(1);
+  }
+
+  100%{
+    transform: scale(1.15);
+    background-color: var(--white);
+    color: darkblue; 
+    font-weight: bold;
+  }
+}
+
+.transfer-img {
+  position: absolute;
+  top: 0px; 
+  z-index: -1;
+  opacity: .95;
+}
+.customers {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  color: var(--dark-grey);
+  margin-top: 8vh;
+  background: rgb(51, 51, 52, 0.3);
+  height: 100%;
+}
+
+.customers > table {
+  padding : 10px; 
+  color: var(--white);
+  border-radius: 20px;
+}
+tr, td, th{
+  background-color: rgb(51, 51, 52, 0.7); 
+  border-radius: 10px; 
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+}
+td > a > button {
+  width: 100%; 
+  height: 100%;
+  cursor: pointer;
+  border: none;
+  background: transparent; 
+  color: var(--light-yellow);
+  font-weight: bold;
+}
+th {
+  color: var(--light-yellow);
+}
+th, td {
+  width: 30vw;
+  min-height: 5vh;
+  margin: .3vh;
+  max-width: 300px;
+}
+td {
+  flex-direction: column;
+}
+tr {
+  background-color: transparent;
+}
+td > a > button:hover {
+  transform: scale(1.1);
+  transition: 0.5s ease transform;
+}
+.customers > h2 {
+  color: #FFFFFF;
+  text-shadow: 0 1px 0 #CCCCCC, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
+  color: var(--white);
+  font-size: 2rem;
+}
+.mobile-props {
+  display: none;
+}
+.cust-name {
+  color: var(--light-yellow);
+  text-transform:capitalize; 
+}
+
+.transaction {
+  margin-top: 8vh;
+  display: flex; 
+  align-items: center;
+  flex-direction: column;
+  background: rgb(51, 51, 52, 0.3);
+  height: 100vh;
+}
+.transaction > h3{
+  color: #FFFFFF;
+  text-shadow: 0 1px 0 #CCCCCC, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
+  color: var(--white);
+  font-size: 2rem;
+}
+
+.sender-section {
+  height: auto;
+  background: rgb(51, 51, 52, 0.7);
+  color: var(--white);
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+.sender-section > h5 {
+  margin: 0 0 0 0 !important; 
+}
+.sender-section > h4 {
+  margin-top: 0px; 
+  margin-bottom: 10px;
+  color: var(--light-blue)
+}
+
+.reciever-section {
+  height: auto;
+  background: rgb(51, 51, 52, 0.7);
+  color: var(--white);
+  padding: 10px;
+  border-radius: 10px;
+  color: var(--light-blue);
+  margin-bottom: 20px;
+}
+.reciever-section > h5 {
+  margin: 10px 0 10px 0; 
+}
+.reciever-section > select, .reciever-section > input {
+  border: none; 
+  border-radius: 5px;
+  padding: 5px;
+  width: 85%;
+  font-weight: bold;
+}
+.transaction > button , .transaction > a > button{
+  width: auto;
+  height: auto; 
+  padding: 7px; 
+  border: none; 
+  font-family: var(--font);
+  border-radius: 7px;
+  background-color: var(--light-blue);
+  color: var(--white);
+  cursor: pointer;
+  margin-bottom: 20px;
+  opacity: .8;
+}
+.transaction > button {
+  background-color: var(--light-yellow);
+  color: var(--dark-grey) !important; 
+  font-size: 1.1rem;
+  font-weight: bold;
+  opacity: 1;
+}
+.transaction > button:hover {
+  animation: grow 0.5s linear;
+  animation-fill-mode: forwards;
+}
+
+.transact-button {
+  padding: 5px;
+  border-radius: 10%;
+  border: 0; 
+  background-color: var(--light-blue);
+  color:var(--dark-grey);
+  font-weight: bold;
+}
+
+.collapse-btn {
+  display: none; 
+}
+
+.about-containter {
+  width: 100%;
+  height: 100vh;
+  margin-top: 8vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about {
+  display: flex;  
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  width: auto;
+  max-width:400px;
+  padding: 30px;
+  border-radius: 10%;
+  margin-top: -20vh;
+}
+.about > h2 {
+  font-weight: bold;
+  color: var(--light-yellow);
+  margin-bottom: 0px;
+}
+.about > h4 {
+  color: white;
+  margin-top: 0;
+}
+.about > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.infotext {
+  color: var(--white);
+  opacity: 0.4;
+  margin-top: 10px;
+}
+.myimg-container {
+  width: 20vh; 
+  height: 20vh; 
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 10px 10px 44px 0px rgba(0,0,0,0.62);
+  -webkit-box-shadow: 10px 10px 44px 0px rgba(0,0,0,0.62);
+  -moz-box-shadow: 10px 10px 44px 0px rgba(0,0,0,0.62);
+}
+.myimg-container > img {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
+.logos {
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 2vh;
+}
+.logos > a {
+  width:15%;
+  height: auto;
+  max-width: 50px;
+}
+.logos > a > img {
+  width: 100%;
+  height: auto;
+}
+
+.footer {
+  background-color: white;
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  position:relative; 
+  bottom: 0;
+}
+.footer > a {
+  margin-left: 10px;
+  text-decoration: none;
+  font-weight: bold;
+
+}
+
+/* mobile prorps */
+
+@media only screen and (max-width: 600px) {
+  th, td:nth-child(2), td:nth-child(3){
+    display: none;
+  }
+  td {
+    width: 80vw;
+    display :flex; 
+    align-items: center;
+    justify-content: center;
+    min-height: 15vh;
+    font-size: 1.2rem;
+  }
+  .mobile-props {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .transaction {
+    transform: scale(1.1);
+    margin-top: 10vh;
+  }
+  .App > h1 {
+    flex-direction: column;
+  }
+  .collapse-btn {
+    display: block; 
+    height: 3.6vh;
+    width: auto; 
+    cursor: pointer;
+  }
+  ul {
+    position: absolute;
+    background-color: white;
+    top: 8vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 15vh !important;
+    justify-content: space-around;
+    font-size: 1.2rem !important;
+    padding-left :0; 
+  }
+  .list-element:hover > a {
+    background-color: white;
+    color: var(--dark-grey) !important; 
+    transition: .3s linear color; 
+    height: auto !important;
+    
+  }
+  .li {
+    height: auto !important;
+  }
+  .footer {
+    flex-direction: column;
+  }
+  .transact-button {
+    margin-top: 10px;
   }
 }
